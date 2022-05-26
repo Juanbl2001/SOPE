@@ -5,8 +5,7 @@ CFLAGS=-I.
 DEPS = pergunta1.c pergunta1.h
 TARGET = phrases
 
-all: 
+all:
 	$(CC) $(DEPS) -o $(TARGET)
-
-#clean:
-#    rm $(TARGET)
+clean:
+	$(RM) -r $(TARGET)

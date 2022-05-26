@@ -3,8 +3,7 @@ CFLAGS=-I.
 DEPS = cypher.c
 TARGET = cypher
 
-all: 
+all:
 	$(CC) $(DEPS) -o $(TARGET)
-
-#clean:
-#    rm $(TARGET)
+clean:
+	$(RM) -r $(TARGET)
