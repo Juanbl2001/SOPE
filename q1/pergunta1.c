@@ -1,4 +1,5 @@
 #include "pergunta1.h"
+#include <ctype.h>
 #define MAX_STR_SIZE 60
 
 int peek(FILE *stream)
@@ -17,7 +18,9 @@ int main(int argc, char *argv[])
     strcpy(str, argv[1]);
 
     FILE* txt = fopen(str,"r");
-    char ch;
+    char ch, next_ch, prev_ch;
+    ch = 'a';
+
 
     if (NULL == txt) {
         printf("file can't be opened \n");
@@ -27,24 +30,28 @@ int main(int argc, char *argv[])
     counter++;
 
     do {
+        prev_ch = ch;
         ch = fgetc(txt);
-        if((ch == '.' || ch == '!' || ch=='?')&& peek(txt)!= EOF ){
+        next_ch = peek(txt);
+        if((ch == '.' || ch == '!' || ch=='?') && next_ch != EOF ){
             printf("%c\n", ch);
-            printf("[%d] ",counter);
+            printf("[%d]",counter);
             counter++;
         }
         else if(ch == EOF){
-            printf("\n");
+            printf("%c", 10);
             break;
         }
-        /**
-        else if(ch =='\n'){
-           printf(" ");
-        }
-        **/
         else{
-           printf("%c", ch); 
+           if(ch == 13){ //prevent newline in between sentences
+            ch = fgetc(txt);
+            printf(" ");
+           }
+           else{
+               printf("%c", ch); 
+           }
         }
+        //fflush(stdout);
     } while (ch != EOF);
  
     // Closing the file
