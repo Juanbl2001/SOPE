@@ -51,20 +51,23 @@ int main(int argc, char const *argv[])
 
             int changed = 0;
             char *ptr;
-            ptr = strstr(dataSize, decryption);
-            memmove(ptr + strlen(encryption), ptr + strlen(decryption), strlen(ptr + strlen(decryption)) + 1);
-            if (ptr != NULL)
+            while(strstr(dataSize, decryption) != NULL)
             {
-                changed = 1;
-                strncpy(ptr, encryption, strlen(encryption));
-            }
-            if (!changed)
-            {
-                ptr = strstr(dataSize, encryption);
-                memmove(ptr + strlen(decryption), ptr + strlen(encryption), strlen(ptr + strlen(encryption)) + 1);
+                ptr = strstr(dataSize, decryption);
+                memmove(ptr + strlen(encryption), ptr + strlen(decryption), strlen(ptr + strlen(decryption)) + 1);
                 if (ptr != NULL)
                 {
-                    strncpy(ptr, decryption, strlen(decryption));
+                    changed = 1;
+                    strncpy(ptr, encryption, strlen(encryption));
+                }
+                if (!changed)
+                {
+                    ptr = strstr(dataSize, encryption);
+                    memmove(ptr + strlen(decryption), ptr + strlen(encryption), strlen(ptr + strlen(encryption)) + 1);
+                    if (ptr != NULL)
+                    {
+                        strncpy(ptr, decryption, strlen(decryption));
+                    }
                 }
             }
         }
