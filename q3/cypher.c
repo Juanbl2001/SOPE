@@ -8,14 +8,12 @@
 int main(int argc, char const *argv[])
 {
     int ChildtoParent[2], ParenttoChild[2];
-
-    // Pipe Creation
+    
     if (pipe(ChildtoParent) == -1)
-        return 1;
+        return -1;
     if (pipe(ParenttoChild) == -1)
-        return 1;
+        return -1;
 
-    // Fork
     int check = fork();
     if (check == -1)
         return 1;
@@ -114,7 +112,7 @@ int main(int argc, char const *argv[])
         if (cypheredf == NULL)
         {
             printf("Error opening text.txt file");
-            return 1;
+            return -1;
         }
 
         fprintf(cypheredf, "%s", processedData);
