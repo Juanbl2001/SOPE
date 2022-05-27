@@ -96,7 +96,7 @@ int main(int argc, char const *argv[])
             strcat(dataSize, fileData);
         }
 
-        dataSize[strlen(dataSize) - 1] = '\n';
+        dataSize[strlen(dataSize)] = '\n';
 
         int n = strlen(dataSize) + 1;
         write(ParenttoChild[1], &n, sizeof(int));
