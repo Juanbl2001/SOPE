@@ -82,9 +82,13 @@ int main(int argc, char const *argv[])
         // Parent process
         close(ChildtoParent[1]);
         close(ParenttoChild[0]);
+        
+        FILE *quotef; 
+
+        quotef = fopen("quote.txt", "r");
 
         char fileData[200], dataSize[1000] = "";
-        while (fgets(fileData, 200, stdin) != NULL)
+        while (fgets(fileData, 200, quotef) != NULL)
         {
             strcat(dataSize, fileData);
         }
