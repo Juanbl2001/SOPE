@@ -217,6 +217,7 @@ void print_result(int (*result_matrix)[n])
 
 		s++;
 	}
+	printf("\n");
 }
 
 int main(int argc, char *argv[])
